@@ -6,6 +6,13 @@ import (
 	"os"
 )
 
+// go build echo42.go
+// ./echo42 12 34 555 | cat -e
+// ./echo42 -s === a bc def | cat -e
+// ./echo42 -n 12 34 567 | cat -e
+// ./echo42 -s === -n a bc def | cat -e
+// ./echo42 -help
+
 func main() {
 	argc := len(os.Args)
 	if argc == 1 {
@@ -13,16 +20,13 @@ func main() {
 		return
 	}
 	var (
-		s = flag.String("s", "", "separator (default ' ')") // ' ' -> " "
-		n = flag.String("n", "", "omit trailing newline")   // change none type..!?
+		n = flag.Bool("n", false, "omit trailing newline")
+		s = flag.String("s", "", "separator (default \" \")")
 	)
 	flag.Parse()
 	args := flag.Args()
 	size := len(args)
 	for i, v := range args {
-		if i == 0 && *n != "" {
-			fmt.Print(*n)
-		}
 		if i != 0 {
 			if *s != "" {
 				fmt.Print(*s)
@@ -32,9 +36,7 @@ func main() {
 		}
 		fmt.Print(v)
 	}
-	if size == 0 && *n != "" {
-		fmt.Print(*n)
-	} else {
+	if !*n {
 		fmt.Println()
 	}
 }
