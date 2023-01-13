@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 	"strconv"
 )
@@ -30,11 +31,11 @@ func calculationStr(args []string) (string, bool) {
 	return s, ok
 }
 
-// func main() {
-// 	s, ok := calculationStr(os.Args)
-// 	if !ok {
-// 		fmt.Println(ERROR_MSG)
-// 		os.Exit(1)
-// 	}
-// 	fmt.Print(s)
-// }
+func main() {
+	s, ok := calculationStr(os.Args)
+	if !ok {
+		fmt.Println(ERROR_MSG)
+		os.Exit(1)
+	}
+	fmt.Print(s)
+}
