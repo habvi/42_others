@@ -23,7 +23,7 @@ func main() {
 	for star <= num {
 		for i := 0; i < star; i++ {
 			fmt.Print("*")
-			num -= star
+			num--
 		}
 		fmt.Println()
 		star++
